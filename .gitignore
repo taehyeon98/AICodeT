@@ -1,0 +1,29 @@
+# Dependencies and build outputs
+node_modules/
+dist/
+build/
+.next/
+coverage/
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.aws/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.tsbuildinfo
+
+# Editor and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local agent configuration
+.codex/
