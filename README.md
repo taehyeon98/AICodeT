@@ -53,11 +53,11 @@ AI로 코드를 만들어본 입문자가 요구사항을 구체화하고, 생�
 
 ## 작업 관리
 
-GitHub Flow를 따릅니다: **이슈 → 작업 브랜치 → 변경·검증 → PR 검토 → main 병합**.
+간단한 GitHub Flow를 따릅니다: **작업 브랜치 → 수정·확인 → PR로 main에 병합**. 작은 작업은 이슈 없이 진행합니다.
 
 - [작업 목록](https://github.com/taehyeon98/AICodeT/issues)
 - [변경 검토 목록](https://github.com/taehyeon98/AICodeT/pulls)
 - [작업 규칙](CONTRIBUTING.md)
 - [AI 작업 지침](AGENTS.md)
 
-이슈와 PR에 설계 이유, 검증 결과, 사용자 피드백을 남겨 포트폴리오의 근거로 활용합니다.
+PR에는 변경 이유와 확인 결과를 짧게 남깁니다. 큰 작업, 미뤄둔 버그와 사용자 피드백은 필요할 때 이슈로 기록합니다.
