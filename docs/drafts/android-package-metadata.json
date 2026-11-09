@@ -1,0 +1,349 @@
+[
+  {
+    "name": "@expo/dom-webview",
+    "requestedVersion": "57.0.1",
+    "version": "57.0.1",
+    "source": "https://registry.npmjs.org/%40expo%2Fdom-webview/57.0.1",
+    "engines": null,
+    "peerDependencies": {
+      "expo": "*",
+      "react": "*",
+      "react-native": "*"
+    },
+    "peerDependenciesMeta": null
+  },
+  {
+    "name": "@expo/log-box",
+    "requestedVersion": "57.0.5",
+    "version": "57.0.5",
+    "source": "https://registry.npmjs.org/%40expo%2Flog-box/57.0.5",
+    "engines": null,
+    "peerDependencies": {
+      "expo": "*",
+      "react": "*",
+      "react-native": "*",
+      "@expo/dom-webview": "^57.0.1"
+    },
+    "peerDependenciesMeta": null
+  },
+  {
+    "name": "@expo/metro-runtime",
+    "requestedVersion": "57.0.18",
+    "version": "57.0.18",
+    "source": "https://registry.npmjs.org/%40expo%2Fmetro-runtime/57.0.18",
+    "engines": null,
+    "peerDependencies": {
+      "expo": "*",
+      "react": "*",
+      "react-dom": "*",
+      "react-native": "*",
+      "@expo/log-box": "^57.0.5"
+    },
+    "peerDependenciesMeta": {
+      "react-dom": {
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "@react-native-async-storage/async-storage",
+    "requestedVersion": "2.2.0",
+    "version": "2.2.0",
+    "source": "https://registry.npmjs.org/%40react-native-async-storage%2Fasync-storage/2.2.0",
+    "engines": null,
+    "peerDependencies": {
+      "react-native": "^0.0.0-0 || >=0.65 <1.0"
+    },
+    "peerDependenciesMeta": null
+  },
+  {
+    "name": "@react-native/jest-preset",
+    "requestedVersion": "0.86.3",
+    "version": "0.86.3",
+    "source": "https://registry.npmjs.org/%40react-native%2Fjest-preset/0.86.3",
+    "engines": {
+      "node": ">= 20.19.4"
+    },
+    "peerDependencies": {
+      "react": "^19.2.3"
+    },
+    "peerDependenciesMeta": null
+  },
+  {
+    "name": "@types/jest",
+    "requestedVersion": "29.5.14",
+    "version": "29.5.14",
+    "source": "https://registry.npmjs.org/%40types%2Fjest/29.5.14",
+    "engines": null,
+    "peerDependencies": {},
+    "peerDependenciesMeta": null
+  },
+  {
+    "name": "@types/react",
+    "requestedVersion": "19.2.2",
+    "version": "19.2.2",
+    "source": "https://registry.npmjs.org/%40types%2Freact/19.2.2",
+    "engines": null,
+    "peerDependencies": {},
+    "peerDependenciesMeta": null
+  },
+  {
+    "name": "eslint",
+    "requestedVersion": "9.39.1",
+    "version": "9.39.1",
+    "source": "https://registry.npmjs.org/eslint/9.39.1",
+    "engines": {
+      "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
+    },
+    "peerDependencies": {
+      "jiti": "*"
+    },
+    "peerDependenciesMeta": {
+      "jiti": {
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "eslint-config-expo",
+    "requestedVersion": "57.0.2",
+    "version": "57.0.2",
+    "source": "https://registry.npmjs.org/eslint-config-expo/57.0.2",
+    "engines": null,
+    "peerDependencies": {
+      "eslint": ">=8.10"
+    },
+    "peerDependenciesMeta": null
+  },
+  {
+    "name": "expo",
+    "requestedVersion": "57.0.32",
+    "version": "57.0.32",
+    "source": "https://registry.npmjs.org/expo/57.0.32",
+    "engines": null,
+    "peerDependencies": {
+      "react": "*",
+      "react-dom": "*",
+      "react-native": "*",
+      "react-native-web": "*",
+      "@expo/dom-webview": "*",
+      "@expo/metro-runtime": "*",
+      "react-native-webview": "*"
+    },
+    "peerDependenciesMeta": {
+      "react-dom": {
+        "optional": true
+      },
+      "react-native-web": {
+        "optional": true
+      },
+      "@expo/dom-webview": {
+        "optional": true
+      },
+      "@expo/metro-runtime": {
+        "optional": true
+      },
+      "react-native-webview": {
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "expo-constants",
+    "requestedVersion": "57.0.23",
+    "version": "57.0.23",
+    "source": "https://registry.npmjs.org/expo-constants/57.0.23",
+    "engines": null,
+    "peerDependencies": {
+      "expo": "*",
+      "react-native": "*"
+    },
+    "peerDependenciesMeta": null
+  },
+  {
+    "name": "expo-doctor",
+    "requestedVersion": "1.21.6",
+    "version": "1.21.6",
+    "source": "https://registry.npmjs.org/expo-doctor/1.21.6",
+    "engines": {
+      "node": "^22.13.0 || ^24.3.0 || ^26.0.0 || >=27.0.0"
+    },
+    "peerDependencies": null,
+    "peerDependenciesMeta": null
+  },
+  {
+    "name": "expo-linking",
+    "requestedVersion": "57.0.13",
+    "version": "57.0.13",
+    "source": "https://registry.npmjs.org/expo-linking/57.0.13",
+    "engines": null,
+    "peerDependencies": {
+      "react": "*",
+      "react-native": "*"
+    },
+    "peerDependenciesMeta": null
+  },
+  {
+    "name": "expo-router",
+    "requestedVersion": "57.0.30",
+    "version": "57.0.30",
+    "source": "https://registry.npmjs.org/expo-router/57.0.30",
+    "engines": null,
+    "peerDependencies": {
+      "expo": "*",
+      "react": "*",
+      "react-dom": "*",
+      "expo-linking": "^57.0.13",
+      "react-native": "*",
+      "@expo/log-box": "^57.0.5",
+      "expo-constants": "^57.0.23",
+      "react-native-web": "*",
+      "@expo/metro-runtime": "^57.0.18",
+      "react-native-screens": "^4.26.0",
+      "react-native-reanimated": "*",
+      "react-server-dom-webpack": "~19.0.4 || ~19.1.5 || ~19.2.4",
+      "react-native-gesture-handler": "*",
+      "@testing-library/react-native": ">= 13.2.0",
+      "react-native-safe-area-context": ">= 5.4.0"
+    },
+    "peerDependenciesMeta": {
+      "react-dom": {
+        "optional": true
+      },
+      "react-native-web": {
+        "optional": true
+      },
+      "react-native-reanimated": {
+        "optional": true
+      },
+      "react-server-dom-webpack": {
+        "optional": true
+      },
+      "react-native-gesture-handler": {
+        "optional": true
+      },
+      "@testing-library/react-native": {
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "expo-status-bar",
+    "requestedVersion": "57.0.1",
+    "version": "57.0.1",
+    "source": "https://registry.npmjs.org/expo-status-bar/57.0.1",
+    "engines": null,
+    "peerDependencies": {
+      "expo": "*",
+      "react": "*",
+      "react-native": "*"
+    },
+    "peerDependenciesMeta": null
+  },
+  {
+    "name": "jest",
+    "requestedVersion": "29.7.0",
+    "version": "29.7.0",
+    "source": "https://registry.npmjs.org/jest/29.7.0",
+    "engines": {
+      "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
+    },
+    "peerDependencies": {
+      "node-notifier": "^8.0.1 || ^9.0.0 || ^10.0.0"
+    },
+    "peerDependenciesMeta": {
+      "node-notifier": {
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "jest-expo",
+    "requestedVersion": "57.0.6",
+    "version": "57.0.6",
+    "source": "https://registry.npmjs.org/jest-expo/57.0.6",
+    "engines": null,
+    "peerDependencies": {
+      "expo": "*",
+      "react-native": "*",
+      "react-server-dom-webpack": "~19.0.4 || ~19.1.5 || ~19.2.4",
+      "@react-native/jest-preset": "^0.86.3"
+    },
+    "peerDependenciesMeta": {
+      "expo": {
+        "optional": true
+      },
+      "react-server-dom-webpack": {
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "react",
+    "requestedVersion": "19.2.3",
+    "version": "19.2.3",
+    "source": "https://registry.npmjs.org/react/19.2.3",
+    "engines": {
+      "node": ">=0.10.0"
+    },
+    "peerDependencies": null,
+    "peerDependenciesMeta": null
+  },
+  {
+    "name": "react-native",
+    "requestedVersion": "0.86.3",
+    "version": "0.86.3",
+    "source": "https://registry.npmjs.org/react-native/0.86.3",
+    "engines": {
+      "node": "^20.19.4 || ^22.13.0 || ^24.3.0 || >= 25.0.0"
+    },
+    "peerDependencies": {
+      "react": "^19.2.3",
+      "@types/react": "^19.1.1",
+      "@react-native/jest-preset": "0.86.3"
+    },
+    "peerDependenciesMeta": {
+      "@types/react": {
+        "optional": true
+      },
+      "@react-native/jest-preset": {
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "react-native-safe-area-context",
+    "requestedVersion": "5.7.0",
+    "version": "5.7.0",
+    "source": "https://registry.npmjs.org/react-native-safe-area-context/5.7.0",
+    "engines": null,
+    "peerDependencies": {
+      "react": "*",
+      "react-native": "*"
+    },
+    "peerDependenciesMeta": null
+  },
+  {
+    "name": "react-native-screens",
+    "requestedVersion": "4.26.0",
+    "version": "4.26.0",
+    "source": "https://registry.npmjs.org/react-native-screens/4.26.0",
+    "engines": null,
+    "peerDependencies": {
+      "react": "*",
+      "react-native": ">=0.84.0"
+    },
+    "peerDependenciesMeta": null
+  },
+  {
+    "name": "typescript",
+    "requestedVersion": "6.0.3",
+    "version": "6.0.3",
+    "source": "https://registry.npmjs.org/typescript/6.0.3",
+    "engines": {
+      "node": ">=14.17"
+    },
+    "peerDependencies": null,
+    "peerDependenciesMeta": null
+  }
+]
