@@ -1,94 +1,82 @@
 # 도구와 버전
 
-확인일: **2026-11-08 (한국시간)**
+실제 설치·검증일: 2026-11-09 (한국시간). 이전 웹 기술 제안에서 승인된 Android 우선 구성으로 전환했습니다. 현재 기준은 루트 package.json과 package-lock.json입니다. 검토 당시 후보는 docs/drafts에 이력으로 보존합니다.
 
-이 문서는 현재 환경과 첫 구현용 기술 제안을 구분합니다. **앱 의존성은 아직 설치하지 않았으며, `package.json`과 `package-lock.json`도 없습니다.** 버전의 배포 여부와 주요 호환 조건을 확인했지만 실제 설치·빌드 검증은 앱 초기화 단계에서 수행해야 합니다.
+## 실제 환경
 
-## 현재 확인한 환경
+- Node.js 24.19.0 / npm 11.17.0 / Git for Windows 2.54.0.windows.1
+- Windows PowerShell, React Native + Expo, Android 우선. iOS는 기기 미검증.
+- 앱 표시 버전 0.1.0. 출시·스토어 배포 버전으로 발표한 상태가 아닙니다.
 
-| 도구 | 실제 확인 버전 | 확인 방법 |
+## 실제 직접 의존성
+
+| 구분 | 패키지 | 설치 버전 |
 | --- | --- | --- |
-| Node.js | `24.19.0` | `node --version` |
-| npm | `11.17.0` | `npm --version` |
-| Git for Windows | `2.54.0.windows.1` | `git --version` |
-| GitHub | 클라우드 서비스, 프로젝트 고정 버전 없음 | 저장소 연결 완료 |
+| 앱 | @expo/dom-webview | 58.0.2 |
+| 앱 | @expo/log-box | 58.0.15 |
+| 앱 | @expo/metro-runtime | 58.0.17 |
+| 앱 | @react-native-async-storage/async-storage | 2.2.0 |
+| 앱 | expo | 58.0.23 |
+| 앱 | expo-constants | 58.0.15 |
+| 앱 | expo-font | 58.0.11 |
+| 앱 | expo-linking | 58.0.16 |
+| 앱 | expo-router | 58.0.30 |
+| 앱 | expo-status-bar | 58.0.4 |
+| 앱 | react | 19.3.0 |
+| 앱 | react-dom | 19.3.0 |
+| 앱 | react-native | 0.88.1 |
+| 앱 | react-native-reanimated | 4.7.1 |
+| 앱 | react-native-safe-area-context | 5.11.1 |
+| 앱 | react-native-screens | 4.30.1 |
+| 앱 | react-native-worklets | 0.13.0 |
+| 개발·검사 | @react-native/jest-preset | 0.88.1 |
+| 개발·검사 | @types/jest | 30.0.0 |
+| 개발·검사 | @types/react | 19.3.0 |
+| 개발·검사 | eslint | 9.39.1 |
+| 개발·검사 | eslint-config-expo | 58.0.4 |
+| 개발·검사 | expo-doctor | 1.21.6 |
+| 개발·검사 | jest | 30.5.2 |
+| 개발·검사 | jest-expo | 58.0.14 |
+| 개발·검사 | typescript | 6.0.3 |
 
-현재 셸은 PowerShell입니다. 셸·편집기·AI 코딩 도구의 특정 버전을 앱 실행 조건으로 강제하지 않습니다.
+직접 의존성 26개를 정확한 버전으로 고정했습니다. 간접 의존성은 잠금 파일로 관리하며 재설치 명령은 npm ci입니다. AsyncStorage 2.2.0으로 영구 진도 저장·복원·초기화를 연결했습니다. 이번 기능 추가에서 패키지·잠금 파일의 버전은 변경하지 않았습니다.
 
-## 첫 구현용 버전 제안
+## SDK 58 전환
 
-### 앱과 개발 환경
+- 사용자의 승인으로 SDK 57에서 SDK 58로 전환했습니다. 최신 버전이라는 이유가 아니라, 설치된 Expo Go가 SDK 58을 요구해 기존 프로젝트를 열지 못한 문제를 해결하기 위한 변경입니다. 서버 로그에서도 버전 불일치를 확인했습니다.
+- Expo 58.0.23의 호환 목록에 맞춰 React 19.3.0, React Native 0.88.1, Router 58.0.30과 보조 패키지를 함께 변경했습니다. Jest와 관련 타입도 30 계열로 맞췄습니다.
+- React Native의 새 타입에 맞춰 학습 화면의 스크롤 참조를 ScrollViewInstance로 수정했습니다. TypeScript 엄격 검사는 유지했습니다.
+- 직접 의존성 26개의 설정·실제 설치·잠금 파일 버전이 일치하며 npm ls --all에서 의존성 문제는 없습니다. --force와 --legacy-peer-deps를 사용하지 않았습니다. Node·npm 버전은 유지했습니다.
+- 이전 SDK 57 설정은 Git에서 제외되는 .expo/sdk57-backup-20261109-174719에 보관했습니다. 백업 manifest 이름은 Jest의 중복 패키지 탐색을 피하도록 package.json.backup입니다.
 
-| 도구·패키지 | 제안 버전 | 역할·선정 이유 |
-| --- | --- | --- |
-| Node.js | `24.22.2` LTS | 현재 환경과 같은 24 계열의 패치 기준. 아직 업그레이드하지 않음 |
-| npm | `11.17.0` | 현재 설치 버전 유지, 패키지 관리 도구를 하나로 통일 |
-| `react` | `19.3.1` | 학습 화면과 상호작용 |
-| `react-dom` | `19.3.1` | React 웹 렌더링. React와 같은 버전 사용 |
-| `typescript` | `6.0.3` | 앱 코드 타입 검사. 린트 도구 지원 범위에 맞춰 선택 |
-| `vite` | `8.3.6` | 개발 서버·정적 배포용 빌드 |
-| `@vitejs/plugin-react` | `6.2.1` | Vite의 React 개발 지원 |
-| `@types/react` | `19.3.0` | React 타입 정의 |
-| `@types/react-dom` | `19.3.0` | React DOM 타입 정의 |
-| `@types/node` | `24.19.2` | Node 24 계열 개발 설정의 타입 정의 |
+근거: [Expo SDK 58](https://docs.expo.dev/versions/v58.0.0/), [Expo 58.0.23 호환 목록](https://unpkg.com/expo@58.0.23/bundledNativeModules.json), 설치 후 Expo CLI 호환 검사. [전환안과 수행 기록](drafts/SDK58_UPGRADE.md)을 함께 보존합니다.
 
-Node 기준의 근거: [Node.js 24.22.2 LTS 릴리스](https://nodejs.org/en/blog/release/v24.22.2). 현재 환경을 자동 변경한 것은 아닙니다.
+## 실제 검사 결과
 
-### 검사 도구
+| 검사 | 결과 |
+| --- | --- |
+| TypeScript / ESLint | 통과 |
+| Jest | 학습·실습·저장 검사 33개 통과 |
+| Expo 의존성 검사 | 통과 |
+| Expo Doctor | 20/20 통과 |
+| Android export | Hermes JavaScript 번들·자산 생성 성공 |
+| 개발 서버 | 재시작 후 HTTP 200, Android manifest SDK 58.0.0 확인 |
+| Android 실제 기기 | SDK 58 전환 직후 정상 작동 사용자 보고. 새 실습·저장 기능은 기기 미확인 |
+| iOS / 사용자 관찰 | 미수행 |
 
-| 도구·패키지 | 제안 버전 | 역할 |
-| --- | --- | --- |
-| `eslint` | `10.14.0` | 코드 정적 검사 |
-| `@eslint/js` | `10.0.1` | 기본 JavaScript 검사 규칙 |
-| `typescript-eslint` | `8.72.1` | TypeScript 검사 규칙 |
-| `eslint-plugin-react-hooks` | `7.1.1` | React Hooks 사용 규칙 |
-| `globals` | `17.14.0` | 브라우저·Node 전역 식별자 정의 |
-| `vitest` | `5.1.0` | 저장·검증·완료 판정 등 핵심 로직 테스트 |
-| `@playwright/test` | `1.65.0` | 실제 브라우저의 사용자 흐름 테스트 |
+Jest 검사는 학습 진행·판정·복습, 네 코드 조합의 실제 실행 결과·완료·무효화, 저장 형식 검증, 복원 전 입력 차단, 연속 저장 순서, 읽기·쓰기·삭제 실패, 재시도와 초기화 순서를 확인합니다. 저장 검사는 메모리 어댑터를 사용하며 Android 기기의 실제 저장소 검증을 대신하지 않습니다. UI의 실제 터치·뒤로 가기·큰 글자 표시는 기기에서 별도 확인해야 합니다. [Android 확인 기록](ANDROID_VALIDATION.md)에 확인 범위와 기기 점검 순서를 기록합니다. Android export는 APK/AAB 빌드나 기기 실행 성공을 의미하지 않습니다.
 
-검사 도구는 사용할 코드와 테스트가 생길 때 구성합니다. Playwright 브라우저는 해당 패키지에 맞는 바이너리를 사용하고 설치 시점의 실제 브라우저 버전을 테스트 기록에 남깁니다.
+## 남은 의존성 보안 경고
 
-## 확인한 호환 조건
+2026-11-09 SDK 58 설치 후 npm audit에서 총 31개 경고(낮음 1, 중간 30, 높음 0, 치명적 0)를 확인했습니다. 같은 하위 취약점이 여러 상위 패키지에 전파된 집계를 포함하므로 독립된 취약점 31개라는 뜻은 아닙니다.
 
-- Vite `8.3.6`와 React 플러그인 `6.2.1`은 Node `^20.19.0 || >=22.12.0`을 선언합니다. 제안 Node `24.22.2`는 이 범위에 들어갑니다.
-- React 플러그인 `6.2.1`의 Vite 조건은 `^8.0.0`이며, React DOM `19.3.1`은 React `^19.3.1`을 요구합니다.
-- Vitest `5.1.0`은 Node 24 계열과 Vite 8 계열을 허용합니다. Playwright `1.65.0`의 Node 조건은 `>=20`입니다.
-- **TypeScript의 확인 당시 최신 버전은 `7.0.2`지만 사용 제안은 `6.0.3`입니다.** `typescript-eslint 8.72.1`의 TypeScript 지원 범위가 `>=4.8.4 <6.1.0`이기 때문입니다. [공식 지원 범위](https://typescript-eslint.io/users/dependency-versions/)
-- npm의 확인 당시 최신 버전은 `12.2.2`입니다. 초기 구성에는 현재 설치된 `11.17.0`을 유지하는 안으로 기록합니다. 최신 버전이라는 이유만으로 변경하지 않습니다.
-- 위 내용은 배포 메타데이터상의 호환 확인입니다. 전체 의존성 설치, 타입 검사, 빌드 성공을 보장하는 검증은 아직 하지 않았습니다.
+- 이전 SDK 57의 Router → query-string → decode-uri-component 관련 높음 경고는 이번 검사에서 보고되지 않았습니다.
+- glob·minimatch 관련 중간 경고와 deepmerge 관련 낮음 경고가 Expo CLI·검사 도구·Jest 등의 의존성 경로에 남았습니다. 실제 배포 영향은 별도 검토 대상이며 취약점이 전부 해결됐다고 표현하지 않습니다.
+- audit의 자동 수정안에는 Expo 52 등 주요 버전 변경이 포함되어 있어 강제 적용하지 않았습니다. 이번 작업에서는 승인된 SDK 58 호환 구성을 유지했습니다.
+- 상세 로컬 검사 결과는 Git에서 제외되는 .expo/audit-sdk58.json에 있습니다.
 
-## 별도 패키지 없이 시작할 부분
+## 실행·검증 명령
 
-| 기능 | 첫 구현 제안 | 버전 관리 |
-| --- | --- | --- |
-| 스타일 | CSS Modules·CSS 변수 | Vite와 브라우저 지원 범위에 따름 |
-| 화면 이동 | 브라우저 해시 주소·React 상태 | 별도 라우터 패키지 없음 |
-| 학습 기록 | `localStorage`·앱 전용 저장 어댑터 | 저장 형식 `schemaVersion: 1` 제안 |
-| 학습 콘텐츠 | 타입이 지정된 정적 데이터 | 콘텐츠별 `contentVersion: 1`부터 시작 제안 |
-| 코드 입력 | 기본 편집 영역 | 고급 편집기 패키지는 후속 검토 |
-| 코드 결과 표시 | 제한된 iframe 실행 환경 | 브라우저 API, 별도 실행 규칙 적용 |
-| AI 설명·응답 | 검토된 고정 콘텐츠·예시 | 실시간 AI API·모델 버전 미정 |
+개발 서버: npm start. 타입: npm run typecheck. 린트: npm run lint. 단위 테스트: npm test. SDK: npm run check:dependencies. 진단: npm run doctor. Android 번들: npm run export:android.
 
-브라우저 저장·실행은 [개발 규칙](DEVELOPMENT_RULES.md)을 따릅니다. Chrome·Edge의 검증 시점 안정 버전을 우선 확인하고, 모바일 화면과 필요한 Safari 동작을 추가 확인합니다. 실제 확인하지 않은 브라우저를 지원 검증 완료로 표시하지 않습니다.
-
-## 설치와 버전 고정 정책
-
-1. 앱 초기화 전에 이 문서의 버전과 호환 조건을 다시 확인합니다. 변경되었다고 자동으로 최신 버전을 채택하지 않습니다.
-2. 직접 의존성은 정확한 버전으로 `package.json`에 적고 `package-lock.json`을 생성·커밋합니다.
-3. Node 기준은 `.node-version` 등 저장소 파일, npm 기준은 `packageManager`에 기록할 예정입니다. 이 파일·설정은 아직 만들지 않았습니다.
-4. 잠금 파일 생성 후 동일 환경 재설치는 `npm ci`를 사용합니다. 앱 초기화 전에는 실행할 수 없습니다.
-5. `typecheck`, `lint`, 관련 테스트와 `build`를 확인한 뒤 이 표의 상태를 실제 사용 버전으로 갱신합니다.
-6. 첫 시연 가능한 앱의 버전은 `0.1.0`을 제안합니다. 현재 앱 릴리스나 배포는 없습니다.
-
-## 아직 도입하지 않은 도구
-
-서버 프레임워크, DB, 로그인, 상태 관리 라이브러리, 고급 코드 편집기, 실시간 AI SDK와 배포 서비스는 미정입니다. GitHub Actions 자동 검사도 아직 없으며 앱 검사 명령을 만든 뒤 구성합니다. 해당 도구가 필요해지면 용도·정확한 버전·설정과 검증 결과를 이 문서에 추가합니다.
-
-## 버전 확인 출처
-
-패키지 버전과 `engines`, `peerDependencies`는 확인일에 npm 공식 레지스트리에서 읽었습니다. 아래 링크는 조회한 버전의 메타데이터입니다.
-
-- 앱: [React](https://registry.npmjs.org/react/19.3.1), [React DOM](https://registry.npmjs.org/react-dom/19.3.1), [TypeScript](https://registry.npmjs.org/typescript/6.0.3), [Vite](https://registry.npmjs.org/vite/8.3.6), [React 플러그인](https://registry.npmjs.org/@vitejs%2Fplugin-react/6.2.1)
-- 타입: [React 타입](https://registry.npmjs.org/@types%2Freact/19.3.0), [React DOM 타입](https://registry.npmjs.org/@types%2Freact-dom/19.3.0), [Node 타입](https://registry.npmjs.org/@types%2Fnode/24.19.2)
-- 검사: [ESLint](https://registry.npmjs.org/eslint/10.14.0), [기본 규칙](https://registry.npmjs.org/@eslint%2Fjs/10.0.1), [TypeScript ESLint](https://registry.npmjs.org/typescript-eslint/8.72.1), [React Hooks](https://registry.npmjs.org/eslint-plugin-react-hooks/7.1.1), [Globals](https://registry.npmjs.org/globals/17.14.0), [Vitest](https://registry.npmjs.org/vitest/5.1.0), [Playwright](https://registry.npmjs.org/@playwright%2Ftest/1.65.0)
-- 사용 안내: [Vite](https://vite.dev/guide/), [Vitest](https://vitest.dev/guide/), [Playwright](https://playwright.dev/docs/intro)
+Expo Go는 초기 기기 확인용입니다. Android Studio·JDK·전역 CLI를 설치하지 않았습니다. 원격 빌드·서명·스토어 제출·서버·실제 AI 모델은 이번 구현에 포함하지 않았습니다.

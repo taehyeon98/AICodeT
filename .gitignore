@@ -4,6 +4,10 @@ dist/
 build/
 .next/
 coverage/
+.expo/
+expo-env.d.ts
+android/
+ios/
 
 # Local environment and credentials
 .env
@@ -11,6 +15,10 @@ coverage/
 !.env.example
 *.pem
 *.key
+*.jks
+*.keystore
+*.p12
+*.mobileprovision
 .aws/
 
 # Logs and temporary files
