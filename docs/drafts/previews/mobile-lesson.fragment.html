@@ -1,0 +1,166 @@
+<div id="aicodet-mobile-lesson" class="viz-dotted-background" aria-label="모바일 학습과 완료 화면 초안">
+  <style>
+    #aicodet-mobile-lesson { --al-bg:light-dark(#fffdf8,#19201e); --al-surface:light-dark(#ffffff,#242d29); --al-text:light-dark(#24372d,#ecf3ed); --al-muted:light-dark(#637167,#b1bfb5); --al-line:light-dark(#dce5da,#435348); --al-primary:light-dark(#26684b,#a7dfbd); --al-on:light-dark(#ffffff,#163325); --al-soft:light-dark(#edf5e8,#2b3a2e); --al-warm:light-dark(#fff0ce,#3f3524); --al-warm-text:light-dark(#755422,#f0d4a4); --al-shadow:light-dark(#cbd8c7,#102217); padding:24px 0; color:var(--al-text); font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    #aicodet-mobile-lesson * { box-sizing:border-box; }
+    #aicodet-mobile-lesson [hidden] { display:none !important; }
+    #aicodet-mobile-lesson .al-review { color:var(--al-muted); text-align:center; font-size:12px; margin:0 0 12px; }
+    #aicodet-mobile-lesson .al-phone { max-width:404px; width:100%; margin:0 auto; border:1px solid var(--al-line); border-radius:26px; background:var(--al-bg); overflow:hidden; }
+    #aicodet-mobile-lesson .al-top { padding:16px 18px; background:var(--al-surface); border-bottom:1px solid var(--al-line); display:flex; gap:14px; align-items:center; }
+    #aicodet-mobile-lesson button { font:inherit; }
+    #aicodet-mobile-lesson .al-back { background:transparent; color:var(--al-text); border:0; min-width:44px; min-height:44px; font-size:22px; }
+    #aicodet-mobile-lesson .al-progress-wrap { flex:1; min-width:0; }
+    #aicodet-mobile-lesson .al-progress-text { display:flex; justify-content:space-between; gap:8px; color:var(--al-muted); font-size:12px; margin-bottom:7px; }
+    #aicodet-mobile-lesson progress { appearance:none; width:100%; height:9px; display:block; border:0; border-radius:8px; overflow:hidden; background:var(--al-line); color:var(--al-primary); }
+    #aicodet-mobile-lesson progress::-webkit-progress-bar { background:var(--al-line); }
+    #aicodet-mobile-lesson progress::-webkit-progress-value { background:var(--al-primary); }
+    #aicodet-mobile-lesson progress::-moz-progress-bar { background:var(--al-primary); }
+    #aicodet-mobile-lesson .al-main { padding:26px 22px 20px; min-height:475px; }
+    #aicodet-mobile-lesson h1 { font-size:25px; line-height:1.4; letter-spacing:-.7px; font-weight:500; margin:0 0 14px; }
+    #aicodet-mobile-lesson h2 { font-size:17px; line-height:1.5; font-weight:500; margin:0 0 8px; }
+    #aicodet-mobile-lesson p { margin:0 0 14px; }
+    #aicodet-mobile-lesson .al-eyebrow { font-size:12px; color:var(--al-primary); margin-bottom:12px; }
+    #aicodet-mobile-lesson .al-sub { color:var(--al-muted); font-size:13px; }
+    #aicodet-mobile-lesson .al-card { padding:18px; border-radius:16px; background:var(--al-soft); margin:20px 0; }
+    #aicodet-mobile-lesson .al-card p:last-child { margin:0; }
+    #aicodet-mobile-lesson .al-flow { list-style:none; padding:0; margin:22px 0; display:grid; gap:14px; }
+    #aicodet-mobile-lesson .al-flow li { display:flex; align-items:center; gap:12px; }
+    #aicodet-mobile-lesson .al-number { width:28px; height:28px; border-radius:9px; display:grid; place-items:center; flex-shrink:0; background:var(--al-primary); color:var(--al-on); font-size:12px; }
+    #aicodet-mobile-lesson .al-example { border:1px solid var(--al-line); border-radius:14px; background:var(--al-surface); padding:15px; margin:16px 0 22px; }
+    #aicodet-mobile-lesson .al-todo { padding:9px 0; border-bottom:1px solid var(--al-line); }
+    #aicodet-mobile-lesson .al-empty { color:var(--al-warm-text); background:var(--al-warm); padding:8px 10px; border-radius:7px; margin-top:9px; font-size:13px; }
+    #aicodet-mobile-lesson fieldset { padding:0; margin:20px 0 0; border:0; min-width:0; }
+    #aicodet-mobile-lesson legend { position:absolute; width:1px; height:1px; clip-path:inset(50%); overflow:hidden; }
+    #aicodet-mobile-lesson .al-option { display:flex; align-items:flex-start; gap:12px; padding:15px 14px; margin:11px 0; border:2px solid var(--al-line); border-radius:14px; background:var(--al-surface); box-shadow:0 3px 0 var(--al-shadow); min-height:54px; }
+    #aicodet-mobile-lesson .al-option:has(input:checked) { border-color:var(--al-primary); background:var(--al-soft); }
+    #aicodet-mobile-lesson input[type="radio"] { margin:5px 0 0; width:17px; height:17px; flex-shrink:0; accent-color:var(--al-primary); }
+    #aicodet-mobile-lesson .al-option:has(input:focus-visible) { outline:3px solid var(--al-primary); outline-offset:3px; }
+    #aicodet-mobile-lesson pre { white-space:pre-wrap; overflow-wrap:anywhere; font:14px/1.8 ui-monospace,Consolas,monospace; background:var(--al-soft); padding:18px; border-radius:14px; margin:18px 0; }
+    #aicodet-mobile-lesson code { font-family:ui-monospace,Consolas,monospace; }
+    #aicodet-mobile-lesson .al-blank { padding:1px 7px; border:1px dashed var(--al-primary); border-radius:4px; color:var(--al-primary); }
+    #aicodet-mobile-lesson a { color:var(--al-primary); text-underline-offset:3px; }
+    #aicodet-mobile-lesson .al-source { font-size:12px; margin-top:18px; }
+    #aicodet-mobile-lesson .al-footer { padding:18px 22px 24px; border-top:1px solid var(--al-line); background:var(--al-surface); }
+    #aicodet-mobile-lesson .al-feedback { padding:14px; margin-bottom:16px; background:var(--al-soft); border-radius:12px; }
+    #aicodet-mobile-lesson .al-feedback[data-kind="retry"] { background:var(--al-warm); color:var(--al-warm-text); }
+    #aicodet-mobile-lesson .al-feedback p { margin:4px 0 0; font-size:13px; }
+    #aicodet-mobile-lesson .al-primary { display:block; width:100%; min-height:52px; border:0; border-radius:13px; background:var(--al-primary); color:var(--al-on); padding:13px 20px; box-shadow:0 4px 0 var(--al-shadow); font-weight:500; }
+    #aicodet-mobile-lesson .al-primary:disabled { background:var(--al-line); color:var(--al-muted); box-shadow:none; }
+    #aicodet-mobile-lesson button:disabled { opacity:.7; }
+    #aicodet-mobile-lesson button:focus-visible,#aicodet-mobile-lesson a:focus-visible { outline:3px solid var(--al-primary); outline-offset:4px; }
+    #aicodet-mobile-lesson .al-hint { font-size:12px; text-align:center; color:var(--al-muted); margin:0 0 12px; }
+    #aicodet-mobile-lesson .al-finish-icon { width:74px; height:74px; display:grid; place-items:center; border-radius:24px; background:var(--al-soft); color:var(--al-primary); margin:0 auto 20px; }
+    #aicodet-mobile-lesson .al-finish-head { text-align:center; }
+    #aicodet-mobile-lesson .al-finish-list { padding-left:22px; margin:14px 0; }
+    #aicodet-mobile-lesson .al-finish-list li { margin:10px 0; }
+    @media(max-width:370px) { #aicodet-mobile-lesson .al-main { padding:22px 16px 18px; } #aicodet-mobile-lesson .al-footer { padding:16px 16px 22px; } #aicodet-mobile-lesson h1 { font-size:23px; } }
+  </style>
+  <p class="al-review">모바일 학습 초안 · 선택과 피드백 체험</p>
+  <div class="al-phone">
+    <header class="al-top"><button id="al-back" class="al-back" type="button" aria-label="이전 학습 화면">←</button><div class="al-progress-wrap"><div class="al-progress-text"><span>빈 할 일이 추가되는 이유</span><span id="al-position">1 / 5</span></div><progress id="al-progress" value="0" max="5" aria-label="화면 체험 진행"></progress></div></header>
+    <main class="al-main">
+      <section id="al-page-0" aria-label="개념 설명">
+        <p class="al-eyebrow">AI 개발 원칙 · 검증 기준</p><h1>고치기 전에,<br>기준부터 정해요</h1><p>AI에게 수정을 부탁할 때는 문제 상황과 원하는 결과를 함께 알려주세요.</p>
+        <div class="al-card"><h2>“이상해. 고쳐줘”보다</h2><p>“빈 내용은 추가하지 말고, 정상적인 할 일은 계속 추가되게 해줘.”</p></div>
+        <ol class="al-flow"><li><span class="al-number">1</span>어떤 문제가 생겼는지 관찰</li><li><span class="al-number">2</span>원하는 동작을 구체적으로 전달</li><li><span class="al-number">3</span>수정 후 확인할 입력 정하기</li></ol><p class="al-sub">이제 짧은 예시로 확인해볼까요?</p>
+      </section>
+      <section id="al-page-1" aria-label="문제 관찰" hidden>
+        <p class="al-eyebrow">문제 관찰</p><h1>무엇이 잘못됐나요?</h1><p>아무것도 입력하지 않고 추가를 누른 상황이에요.</p><div class="al-example"><p class="al-sub">예제 앱 · 추가 후 화면</p><div class="al-todo">기획 정리하기</div><div class="al-empty">새로 생긴 빈 항목</div></div>
+        <fieldset><legend>관찰한 문제 고르기</legend><label class="al-option"><input type="radio" name="al-q1" data-step="1" value="0"><span>기존 항목이 모두 사라졌어요.</span></label><label class="al-option"><input type="radio" name="al-q1" data-step="1" value="1"><span>입력하지 않았는데 빈 항목이 추가됐어요.</span></label><label class="al-option"><input type="radio" name="al-q1" data-step="1" value="2"><span>추가 버튼이 아예 작동하지 않아요.</span></label></fieldset>
+      </section>
+      <section id="al-page-2" aria-label="수정 요청 선택" hidden>
+        <p class="al-eyebrow">AI에게 요청하기</p><h1>어떤 요청이<br>더 구체적인가요?</h1><p>원하는 결과와 유지할 동작을 함께 골라보세요.</p>
+        <fieldset><legend>구체적인 수정 요청 고르기</legend><label class="al-option"><input type="radio" name="al-q2" data-step="2" value="0"><span>빈 내용이나 공백만 넣으면 추가하지 말고 안내해줘. 정상 입력과 기존 목록은 유지해줘.</span></label><label class="al-option"><input type="radio" name="al-q2" data-step="2" value="1"><span>이상하니까 알아서 고쳐줘.</span></label><label class="al-option"><input type="radio" name="al-q2" data-step="2" value="2"><span>빈 항목이 안 생기도록 추가 버튼을 없애줘.</span></label></fieldset><p class="al-sub">교육용 요청문 예시</p>
+      </section>
+      <section id="al-page-3" aria-label="코드 빈칸 채우기" hidden>
+        <p class="al-eyebrow">코딩 기초 · 문자열</p><h1>앞뒤 공백을<br>제거하려면?</h1><p>공백을 제거한 새 문자열을 만든 뒤, 내용이 비었는지 확인하려고 해요.</p><pre><code>const text = input.value.<span class="al-blank" id="al-code-choice">____</span>();</code></pre>
+        <fieldset><legend>빈칸에 들어갈 메서드 고르기</legend><label class="al-option"><input type="radio" name="al-q3" data-step="3" value="0"><span><code>toUpperCase</code></span></label><label class="al-option"><input type="radio" name="al-q3" data-step="3" value="1"><span><code>repeat</code></span></label><label class="al-option"><input type="radio" name="al-q3" data-step="3" value="2"><span><code>trim</code></span></label></fieldset><p class="al-source"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim" target="_blank" rel="noopener noreferrer">설명 근거 · MDN trim()</a></p>
+      </section>
+      <section id="al-page-4" aria-label="검증 대상 선택" hidden>
+        <p class="al-eyebrow">결과 검증</p><h1>수정한 뒤에는<br>무엇을 확인할까요?</h1><p>문제를 해결하면서, 잘 되던 동작도 유지됐는지 확인해요.</p>
+        <fieldset><legend>검증할 대상 고르기</legend><label class="al-option"><input type="radio" name="al-q4" data-step="4" value="0"><span>코드가 짧아졌는지만 확인해요.</span></label><label class="al-option"><input type="radio" name="al-q4" data-step="4" value="1"><span>빈 입력·공백 입력·정상 입력을 모두 확인해요.</span></label><label class="al-option"><input type="radio" name="al-q4" data-step="4" value="2"><span>정상 입력이 추가되는지만 확인해요.</span></label></fieldset><p class="al-sub">여기서는 검증 계획을 고르고 있어요. 실제 코드 검사는 다음 실습에서 진행해요.</p>
+      </section>
+      <section id="al-page-5" aria-label="학습 체험 완료" hidden>
+        <div class="al-finish-head"><div class="al-finish-icon"><i data-lucide="circle-check" aria-hidden="true"></i></div><p class="al-eyebrow">이해 확인을 마쳤어요</p><h1>다음엔 무엇을<br>확인할지 알겠죠?</h1></div>
+        <div class="al-card"><h2>이번에 다룬 내용</h2><ul class="al-finish-list"><li>문제 상황과 기대 결과 설명하기</li><li><code>trim()</code>으로 앞뒤 공백 처리하기</li><li>여러 입력으로 수정 결과 확인하기</li></ul></div><p>다음에는 직접 코드를 수정하고, 예상한 대로 동작하는지 확인해볼 수 있어요.</p><p class="al-sub">화면 체험 결과예요. 실제 코드 검사나 학습 기록 저장은 아직 하지 않았어요.</p>
+      </section>
+    </main>
+    <footer class="al-footer">
+      <div id="al-feedback" class="al-feedback" role="status" aria-live="polite" hidden><h2 id="al-feedback-title"></h2><p id="al-feedback-body"></p></div>
+      <p class="al-hint" id="al-hint">짧은 설명부터 시작해요</p>
+      <button id="al-primary" class="al-primary" type="button">시작하기</button>
+    </footer>
+  </div>
+  <script>
+    (() => {
+      const root = document.getElementById('aicodet-mobile-lesson');
+      const get = id => root.querySelector('#al-' + id);
+      const keys = {1:1,2:0,3:2,4:1};
+      const explanations = {
+        1:['맞았어요','내용 없는 항목이 추가된 것이 문제예요. 이 동작을 AI에게 구체적으로 설명할 수 있어요.','다시 살펴보세요','기존 항목은 남아 있어요. 새로 생긴 빈 줄에 주목해보세요.'],
+        2:['기준이 분명해요','빈 입력의 처리와 정상 동작 유지를 함께 전달했어요.','조건을 더 살펴보세요','무엇을 바꿀지와 무엇을 유지할지가 함께 드러나는 요청을 골라보세요.'],
+        3:['trim()이 맞아요','앞뒤 공백을 제거한 새 문자열을 반환해요. 원래 문자열 자체를 바꾸지는 않아요.','다시 골라보세요','이 문맥에서 선택한 메서드는 원하는 앞뒤 공백 제거 동작을 하지 않아요.'],
+        4:['검증 계획을 골랐어요','예외 입력이 막히는지와 정상적인 추가가 유지되는지 함께 확인해야 해요.','빠진 입력이 있어요','문제가 생겼던 빈 입력과 공백 입력도 확인 대상에 포함해보세요.']
+      };
+      let step = 0;
+      let answers = {1:null,2:null,3:null,4:null};
+      let checked = {1:false,2:false,3:false,4:false};
+      const radios = Array.from(root.querySelectorAll('input[data-step]'));
+      const passed = n => checked[n] && answers[n] === keys[n];
+      function render() {
+        for(let n=0;n<=5;n++) get('page-'+n).hidden = n !== step;
+        get('back').disabled = step === 0;
+        get('position').textContent = step === 5 ? '완료' : (step+1)+' / 5';
+        get('progress').value = step;
+        radios.forEach(input => { input.checked = answers[Number(input.dataset.step)] === Number(input.value); });
+        get('code-choice').textContent = answers[3] === null ? '____' : ['toUpperCase','repeat','trim'][answers[3]];
+        const question = step >= 1 && step <= 4;
+        get('feedback').hidden = !question || !checked[step];
+        if(question && checked[step]) {
+          const ok = passed(step);
+          const info = explanations[step];
+          get('feedback').dataset.kind = ok ? 'correct' : 'retry';
+          get('feedback-title').textContent = info[ok ? 0 : 2];
+          get('feedback-body').textContent = info[ok ? 1 : 3];
+        }
+        get('primary').disabled = question && answers[step] === null;
+        get('primary').textContent = step === 0 ? '시작하기' : step === 5 ? '다시 체험하기' : passed(step) ? '계속하기' : '확인하기';
+        get('hint').textContent = step === 0 ? '짧은 설명부터 시작해요' : step === 5 ? '선택형 활동 완료 · 실제 진도 기록 아님' : answers[step] === null ? '답을 선택해주세요' : checked[step] && !passed(step) ? '다른 답을 선택하고 다시 확인할 수 있어요' : '준비된 문항 기준으로 확인해요';
+      }
+      function persist() {
+        if(window.openai && window.openai.setWidgetState) window.openai.setWidgetState({modelContent:{lessonPreview:step === 5 ? '학습 체험 완료' : '학습 화면 '+(step+1)},privateContent:{step,answers,checked}}).catch(() => {});
+      }
+      function restore(snapshot) {
+        const saved = snapshot && snapshot.privateContent;
+        if(!saved || !Number.isInteger(saved.step) || saved.step < 0 || saved.step > 5) return;
+        const nextAnswers = {1:null,2:null,3:null,4:null};
+        const nextChecked = {1:false,2:false,3:false,4:false};
+        for(let n=1;n<=4;n++) {
+          const value = saved.answers && saved.answers[n];
+          if(Number.isInteger(value) && value >= 0 && value <= 2) nextAnswers[n] = value;
+          nextChecked[n] = nextAnswers[n] !== null && Boolean(saved.checked && saved.checked[n] === true);
+        }
+        answers = nextAnswers; checked = nextChecked;
+        step = saved.step;
+        for(let n=1;n<step;n++) if(!passed(n)){step=n;break;}
+        if(step === 5 && ![1,2,3,4].every(passed))step=1;
+      }
+      radios.forEach(input => input.addEventListener('change',() => {
+        const n = Number(input.dataset.step);
+        answers[n] = Number(input.value); checked[n] = false;
+        render(); persist();
+      }));
+      get('primary').addEventListener('click',() => {
+        if(step === 5){step=0;answers={1:null,2:null,3:null,4:null};checked={1:false,2:false,3:false,4:false};}
+        else if(step === 0)step=1;
+        else if(answers[step] === null)return;
+        else if(passed(step))step++;
+        else checked[step]=true;
+        render(); persist();
+      });
+      get('back').addEventListener('click',() => { if(step>0)step--;render();persist(); });
+      restore(window.openai && window.openai.widgetState);
+      render();
+      window.addEventListener('openai:set_globals',event => { const state=event.detail && event.detail.globals && event.detail.globals.widgetState;if(state){restore(state);render();} });
+    })();
+  </script>
+</div>

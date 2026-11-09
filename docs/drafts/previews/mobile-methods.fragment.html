@@ -1,0 +1,139 @@
+<div id="aicodet-mobile-methods" class="viz-dotted-background" aria-label="AICodeT 모바일 홈과 방법론 화면 초안">
+  <style>
+    #aicodet-mobile-methods { --am-bg:light-dark(#fffdf8,#19201e); --am-surface:light-dark(#ffffff,#242d29); --am-text:light-dark(#24372d,#ecf3ed); --am-muted:light-dark(#637167,#b1bfb5); --am-line:light-dark(#dce5da,#435348); --am-primary:light-dark(#26684b,#a7dfbd); --am-on:light-dark(#ffffff,#163325); --am-soft:light-dark(#edf5e8,#2b3a2e); --am-warm:light-dark(#fff0ce,#3f3524); --am-warm-text:light-dark(#755422,#f0d4a4); --am-shadow:light-dark(#cbd8c7,#102217); padding:24px 0; color:var(--am-text); font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    #aicodet-mobile-methods * { box-sizing:border-box; }
+    #aicodet-mobile-methods [hidden] { display:none !important; }
+    #aicodet-mobile-methods .am-preview-label { text-align:center; font-size:12px; color:var(--am-muted); margin:0 0 12px; }
+    #aicodet-mobile-methods .am-phone { width:100%; max-width:404px; margin:0 auto; background:var(--am-bg); border:1px solid var(--am-line); border-radius:26px; overflow:hidden; }
+    #aicodet-mobile-methods .am-top { display:flex; align-items:center; gap:8px; min-height:68px; padding:14px 20px; background:var(--am-surface); border-bottom:1px solid var(--am-line); }
+    #aicodet-mobile-methods .am-brand { font-size:21px; letter-spacing:-.7px; font-weight:500; }
+    #aicodet-mobile-methods .am-app-mark { display:grid; place-items:center; width:32px; height:32px; border-radius:10px; color:var(--am-on); background:var(--am-primary); font-family:monospace; }
+    #aicodet-mobile-methods .am-back { border:0; background:transparent; color:var(--am-text); padding:8px 10px 8px 0; font:inherit; min-height:44px; }
+    #aicodet-mobile-methods .am-page { padding:24px 22px; min-height:590px; }
+    #aicodet-mobile-methods h1 { font-size:26px; font-weight:500; line-height:1.35; letter-spacing:-.8px; margin:0 0 8px; }
+    #aicodet-mobile-methods h2 { font-size:19px; font-weight:500; line-height:1.4; margin:0 0 8px; }
+    #aicodet-mobile-methods h3 { font-size:16px; font-weight:500; margin:0 0 6px; }
+    #aicodet-mobile-methods p { margin:0 0 14px; }
+    #aicodet-mobile-methods .am-sub { color:var(--am-muted); font-size:13px; }
+    #aicodet-mobile-methods .am-small { color:var(--am-muted); font-size:12px; }
+    #aicodet-mobile-methods .am-method-button { width:100%; text-align:left; display:grid; grid-template-columns:40px 1fr 18px; gap:12px; align-items:center; margin:22px 0 28px; padding:18px 14px; border:2px solid var(--am-primary); border-radius:18px; background:var(--am-soft); color:var(--am-text); box-shadow:0 4px 0 var(--am-shadow); font:inherit; }
+    #aicodet-mobile-methods .am-icon { display:grid; place-items:center; width:38px; height:42px; background:var(--am-primary); color:var(--am-on); border-radius:12px; }
+    #aicodet-mobile-methods .am-method-title { display:block; font-size:16px; font-weight:500; line-height:1.4; }
+    #aicodet-mobile-methods .am-method-desc { display:block; font-size:12px; color:var(--am-muted); margin-top:5px; }
+    #aicodet-mobile-methods .am-unit { padding:14px 16px; background:var(--am-primary); border-radius:13px; color:var(--am-on); }
+    #aicodet-mobile-methods .am-unit p { margin:0; font-size:12px; }
+    #aicodet-mobile-methods .am-unit h2 { margin:2px 0 0; font-size:17px; }
+    #aicodet-mobile-methods .am-path { list-style:none; position:relative; margin:24px 0 18px; padding:0; display:grid; gap:20px; }
+    #aicodet-mobile-methods .am-path:before { content:""; position:absolute; left:40px; top:25px; bottom:25px; width:5px; background:var(--am-line); border-radius:4px; }
+    #aicodet-mobile-methods .am-path li { position:relative; display:flex; align-items:center; gap:20px; padding-left:12px; }
+    #aicodet-mobile-methods .am-node { flex:0 0 60px; height:60px; display:grid; place-items:center; border-radius:50%; background:var(--am-surface); border:2px solid var(--am-line); box-shadow:0 4px 0 var(--am-shadow); color:var(--am-muted); font-size:18px; }
+    #aicodet-mobile-methods .am-node-first { background:var(--am-soft); border-color:var(--am-primary); color:var(--am-primary); }
+    #aicodet-mobile-methods .am-path-name { display:block; font-weight:500; }
+    #aicodet-mobile-methods .am-path-status { display:block; font-size:12px; color:var(--am-muted); }
+    #aicodet-mobile-methods .am-reading-card { display:block; width:100%; text-align:left; padding:18px; margin:16px 0; border:1px solid var(--am-line); border-radius:16px; background:var(--am-surface); color:var(--am-text); font:inherit; }
+    #aicodet-mobile-methods button.am-reading-card { border:2px solid var(--am-primary); box-shadow:0 4px 0 var(--am-shadow); }
+    #aicodet-mobile-methods .am-tag { display:inline-block; background:var(--am-soft); color:var(--am-primary); padding:3px 9px; border-radius:7px; font-size:12px; margin-bottom:10px; }
+    #aicodet-mobile-methods .am-reading-card p:last-child { margin-bottom:0; }
+    #aicodet-mobile-methods .am-card-end { display:flex; justify-content:space-between; gap:10px; align-items:center; margin-top:14px; color:var(--am-primary); font-weight:500; font-size:13px; }
+    #aicodet-mobile-methods .am-article-tag { color:var(--am-primary); font-size:12px; margin:0 0 10px; }
+    #aicodet-mobile-methods .am-definition { padding:18px; border-radius:16px; background:var(--am-soft); margin:20px 0; }
+    #aicodet-mobile-methods .am-definition p { margin:0 0 10px; }
+    #aicodet-mobile-methods .am-article-section { margin:22px 0; }
+    #aicodet-mobile-methods details { border-top:1px solid var(--am-line); padding:16px 0; }
+    #aicodet-mobile-methods summary { min-height:32px; font-weight:500; }
+    #aicodet-mobile-methods details p { margin:12px 0; }
+    #aicodet-mobile-methods .am-example { padding:16px; border-radius:14px; background:var(--am-warm); color:var(--am-warm-text); margin:18px 0; }
+    #aicodet-mobile-methods .am-example ol { padding-left:20px; margin:8px 0; }
+    #aicodet-mobile-methods a { color:var(--am-primary); text-decoration:underline; text-underline-offset:3px; overflow-wrap:anywhere; }
+    #aicodet-mobile-methods .am-sources { padding-left:20px; font-size:13px; }
+    #aicodet-mobile-methods .am-sources li { margin:12px 0; }
+    #aicodet-mobile-methods .am-bottom { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); padding:10px 8px 16px; gap:4px; border-top:1px solid var(--am-line); background:var(--am-surface); }
+    #aicodet-mobile-methods .am-nav { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; border:0; background:transparent; color:var(--am-muted); font:inherit; font-size:12px; border-radius:10px; min-height:52px; padding:8px 4px; }
+    #aicodet-mobile-methods .am-nav[aria-current="page"] { background:var(--am-soft); color:var(--am-primary); }
+    #aicodet-mobile-methods .am-nav:disabled { color:var(--am-muted); opacity:.65; }
+    #aicodet-mobile-methods .am-nav span { font-size:11px; }
+    #aicodet-mobile-methods button:focus-visible,#aicodet-mobile-methods summary:focus-visible,#aicodet-mobile-methods a:focus-visible { outline:3px solid var(--am-primary); outline-offset:4px; }
+    #aicodet-mobile-methods .am-live { position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+    @media(max-width:370px) { #aicodet-mobile-methods .am-page { padding:20px 16px; } #aicodet-mobile-methods .am-method-button { grid-template-columns:30px 1fr 12px; gap:10px; padding:16px 10px; } #aicodet-mobile-methods .am-icon { width:30px; } #aicodet-mobile-methods h1 { font-size:24px; } }
+  </style>
+  <p class="am-preview-label">모바일 화면 초안 · 홈에서 방법론을 눌러보세요</p>
+  <div class="am-phone">
+    <header class="am-top"><button id="am-back" class="am-back" type="button" hidden aria-label="이전 화면으로">← 뒤로</button><span id="am-brand-mark" class="am-app-mark" aria-hidden="true">&gt;_</span><span id="am-top-title" class="am-brand">AICodeT</span></header>
+    <main>
+      <section id="am-home" class="am-page" aria-label="학습 홈">
+        <p class="am-sub">한 걸음씩 배우는 AI 코딩</p><h1>AI와 만드는<br>첫걸음</h1>
+        <button id="am-open-methods" class="am-method-button" type="button"><span class="am-icon"><i data-lucide="book-open" aria-hidden="true"></i></span><span><span class="am-method-title">AI 코딩 개발 방법론</span><span class="am-method-desc">하네스·컨텍스트·프롬프트<br>출처와 함께 알아보기</span></span><span aria-hidden="true">→</span></button>
+        <div class="am-unit"><p>첫 번째 단원</p><h2>AI와 함께 문제 해결하기</h2></div>
+        <ol class="am-path" aria-label="학습 순서 예시">
+          <li><span class="am-node am-node-first" aria-hidden="true">1</span><div><span class="am-path-name">좋은 요청 만들기</span><span class="am-path-status">학습 준비 중</span></div></li>
+          <li><span class="am-node" aria-hidden="true">2</span><div><span class="am-path-name">코드의 흐름 이해하기</span><span class="am-path-status">다음 학습</span></div></li>
+          <li><span class="am-node" aria-hidden="true">3</span><div><span class="am-path-name">오류 발견하고 확인하기</span><span class="am-path-status">다음 학습</span></div></li>
+        </ol><p class="am-small">방법론은 학습 진도와 관계없이 읽을 수 있어요.</p>
+      </section>
+      <section id="am-methods" class="am-page" aria-label="AI 코딩 개발 방법론 목록" hidden>
+        <p class="am-sub">읽고 이해하는 개발 가이드</p><h1>AI 코딩<br>개발 방법론</h1><p class="am-sub">공식 자료를 바탕으로 개념과 사례를 정리했어요.</p>
+        <button id="am-open-harness" type="button" class="am-reading-card"><span class="am-tag">상세 설명</span><h2>하네스 엔지니어링</h2><p>에이전트가 작업할 환경과 실행·검증·기록 구조를 설계하는 접근.</p><span class="am-card-end"><span>OpenAI · Anthropic 자료</span><span>읽기 →</span></span></button>
+        <article class="am-reading-card"><h2>컨텍스트 엔지니어링</h2><p>모델에 전달할 지시·자료·도구 정보·대화 이력 등을 선별하고 관리하는 방법.</p><p class="am-small"><a href="https://www.anthropic.com/research/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer">Anthropic 원문</a> · 상세 설명 준비 중</p></article>
+        <article class="am-reading-card"><h2>프롬프트 엔지니어링</h2><p>모델에 전달하는 지시를 작성하고 구성하는 방법.</p><p class="am-small"><a href="https://www.anthropic.com/research/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer">Anthropic 원문</a> · 상세 설명 준비 중</p></article>
+        <p class="am-small">목록 순서가 기술의 우열이나 필수 학습 순서를 뜻하지는 않아요.</p>
+      </section>
+      <section id="am-harness" class="am-page" aria-label="하네스 엔지니어링 설명" hidden>
+        <p class="am-article-tag">개념과 공식 사례</p><h1>하네스<br>엔지니어링</h1><p class="am-sub">Harness Engineering</p><p class="am-small">출처 확인 · 2026.11.09</p>
+        <div class="am-definition"><h3>어떤 접근인가요?</h3><p>AI 에이전트가 작업할 환경과 도구, 실행·기록·검증·피드백 구조를 설계하는 접근으로 설명할 수 있어요.</p><p class="am-small">여러 공식 사례를 종합한 교육용 해설이에요. 표준 기관의 정의를 인용한 것은 아니에요.</p><a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">근거 1 · OpenAI</a> · <a href="https://www.anthropic.com/research/effective-harnesses-for-long-running-agents" target="_blank" rel="noopener noreferrer">근거 2 · Anthropic</a></div>
+        <details><summary>공식 사례에서는 어떻게 하나요?</summary><p><strong>OpenAI</strong>는 에이전트가 일할 환경, 의도 전달과 피드백 구조를 설계한 경험을 소개해요. <a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">원문 보기</a></p><p><strong>Anthropic</strong>은 초기 환경을 설정하고, 기능 목록·진행 기록·Git 이력·테스트를 활용해 한 기능씩 구현한 사례를 설명해요. <a href="https://www.anthropic.com/research/effective-harnesses-for-long-running-agents" target="_blank" rel="noopener noreferrer">원문 보기</a></p></details>
+        <details><summary>우리 프로젝트에 적용한다면?</summary><div class="am-example"><h3>교육용 예시 · AICodeT 작성</h3><p>빈 할 일이 추가되는 문제를 맡긴다고 가정해볼게요.</p><ol><li>고칠 문제와 완료 조건 전달</li><li>코드와 실행·검사 도구 준비</li><li>여러 입력의 실제 결과 확인</li><li>실패 결과를 다음 수정에 반영</li><li>변경 내용과 남은 작업 기록</li></ol><p>이 순서는 설명을 위한 예시이며 ‘공식 5단계’가 아니에요.</p></div></details>
+        <details><summary>어디까지 적용할 수 있나요?</summary><p>공식 글들은 특정 팀과 환경의 경험 보고예요. 모든 프로젝트에서 같은 결과를 보장하지 않으며, 필요한 구성은 작업에 따라 달라져요.</p><p>정해둔 검사를 통과해도 모든 문제가 해결됐다고 단정할 수는 없어요.</p></details>
+        <details><summary>원문과 발행일 보기</summary><ol class="am-sources"><li><a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">Harness engineering: leveraging Codex in an agent-first world</a><br>OpenAI · 2026.02.11</li><li><a href="https://www.anthropic.com/research/effective-harnesses-for-long-running-agents" target="_blank" rel="noopener noreferrer">Effective harnesses for long-running agents</a><br>Anthropic · 2025.11.26</li></ol></details>
+      </section>
+    </main>
+    <nav class="am-bottom" aria-label="하단 메뉴">
+      <button id="am-nav-home" class="am-nav" type="button" aria-current="page"><i data-lucide="house" aria-hidden="true"></i>학습</button>
+      <button id="am-nav-methods" class="am-nav" type="button"><i data-lucide="book-open" aria-hidden="true"></i>방법론</button>
+      <button class="am-nav" type="button" disabled><i data-lucide="rotate-ccw" aria-hidden="true"></i>복습<span>준비 중</span></button>
+      <button class="am-nav" type="button" disabled><i data-lucide="user-round" aria-hidden="true"></i>내 기록<span>준비 중</span></button>
+    </nav>
+  </div>
+  <span class="am-live" id="am-live" aria-live="polite"></span>
+  <script>
+    (() => {
+      const root = document.getElementById('aicodet-mobile-methods');
+      const names = {home:'학습 홈',methods:'AI 코딩 개발 방법론',harness:'하네스 엔지니어링'};
+      const views = Object.keys(names);
+      let view = 'home';
+      const get = id => root.querySelector('#am-' + id);
+      function render(announce) {
+        views.forEach(name => { get(name).hidden = name !== view; });
+        get('back').hidden = view === 'home';
+        get('brand-mark').hidden = view !== 'home';
+        get('top-title').textContent = view === 'home' ? 'AICodeT' : view === 'methods' ? '방법론' : '개발 가이드';
+        ['home','methods'].forEach(name => {
+          const selected = name === (view === 'home' ? 'home' : 'methods');
+          if (selected) get('nav-' + name).setAttribute('aria-current','page');
+          else get('nav-' + name).removeAttribute('aria-current');
+        });
+        if (announce) get('live').textContent = names[view] + ' 화면';
+      }
+      function restore(snapshot) {
+        const saved = snapshot && snapshot.privateContent && snapshot.privateContent.view;
+        if (views.includes(saved)) view = saved;
+      }
+      function navigate(next) {
+        if (!views.includes(next)) return;
+        view = next;
+        render(true);
+        if (window.openai && window.openai.setWidgetState) window.openai.setWidgetState({modelContent:{mobilePreview:names[view]},privateContent:{view}}).catch(() => {});
+      }
+      get('open-methods').addEventListener('click',() => navigate('methods'));
+      get('open-harness').addEventListener('click',() => navigate('harness'));
+      get('nav-home').addEventListener('click',() => navigate('home'));
+      get('nav-methods').addEventListener('click',() => navigate('methods'));
+      get('back').addEventListener('click',() => navigate(view === 'harness' ? 'methods' : 'home'));
+      restore(window.openai && window.openai.widgetState);
+      render(false);
+      window.addEventListener('openai:set_globals',event => {
+        const state = event.detail && event.detail.globals && event.detail.globals.widgetState;
+        if (state) { restore(state); render(false); }
+      });
+    })();
+  </script>
+</div>
