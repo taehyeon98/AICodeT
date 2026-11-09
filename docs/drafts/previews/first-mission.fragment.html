@@ -1,0 +1,139 @@
+<div id="aicodet-mission-preview" aria-label="AICodeT 첫 미션 화면 초안">
+  <style>
+    #aicodet-mission-preview { --ac-bg:light-dark(#fafbf9,#171b19); --ac-panel:light-dark(#ffffff,#202622); --ac-ink:light-dark(#202d27,#e8eee9); --ac-muted:light-dark(#58665d,#b0bdb4); --ac-line:light-dark(#dce4de,#3a453e); --ac-soft:light-dark(#edf3ed,#29372c); --ac-accent:light-dark(#285e3e,#a9d6b4); --ac-on:light-dark(#ffffff,#172b1e); color:var(--ac-ink); font-family:system-ui,sans-serif; font-size:14px; line-height:1.65; }
+    #aicodet-mission-preview * { box-sizing:border-box; }
+    #aicodet-mission-preview .ac-app { background:var(--ac-bg); border:1px solid var(--ac-line); border-radius:16px; overflow:hidden; }
+    #aicodet-mission-preview .ac-top { padding:20px 100px 20px 24px; background:var(--ac-panel); display:flex; gap:18px; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--ac-line); }
+    #aicodet-mission-preview .ac-brand { font-size:19px; font-weight:500; letter-spacing:-.5px; }
+    #aicodet-mission-preview .ac-caption { color:var(--ac-muted); font-size:12px; }
+    #aicodet-mission-preview .ac-title { font-weight:500; }
+    #aicodet-mission-preview .ac-steps { display:flex; flex-wrap:wrap; gap:6px; padding:16px 24px; }
+    #aicodet-mission-preview button { font:inherit; cursor:pointer; }
+    #aicodet-mission-preview .ac-step { border:1px solid var(--ac-line); background:var(--ac-panel); color:var(--ac-muted); border-radius:9px; padding:8px 12px; }
+    #aicodet-mission-preview .ac-step[aria-current="step"] { background:var(--ac-accent); color:var(--ac-on); border-color:var(--ac-accent); }
+    #aicodet-mission-preview .ac-layout { display:grid; grid-template-columns:230px minmax(0,1fr); gap:24px; padding:12px 24px 24px; }
+    #aicodet-mission-preview aside { padding:20px; background:var(--ac-soft); border-radius:12px; align-self:start; }
+    #aicodet-mission-preview .ac-kicker { color:var(--ac-muted); font-size:12px; margin-bottom:8px; }
+    #aicodet-mission-preview h2 { font-size:22px; font-weight:500; line-height:1.4; margin:0 0 12px; }
+    #aicodet-mission-preview h3 { font-size:16px; font-weight:500; margin:0 0 10px; }
+    #aicodet-mission-preview p { margin:0 0 14px; }
+    #aicodet-mission-preview p:last-child { margin-bottom:0; }
+    #aicodet-mission-preview .ac-content { min-width:0; }
+    #aicodet-mission-preview .ac-box { background:var(--ac-panel); border:1px solid var(--ac-line); border-radius:10px; padding:18px; margin:14px 0; }
+    #aicodet-mission-preview .ac-field { display:block; margin:12px 0; }
+    #aicodet-mission-preview .ac-label { display:block; margin-bottom:6px; font-weight:500; }
+    #aicodet-mission-preview input,#aicodet-mission-preview textarea { font:inherit; color:var(--ac-ink); background:var(--ac-panel); width:100%; border:1px solid var(--ac-line); border-radius:8px; padding:10px 12px; resize:vertical; }
+    #aicodet-mission-preview .ac-choice { padding:10px 12px; border-left:3px solid var(--ac-accent); background:var(--ac-soft); margin:10px 0; }
+    #aicodet-mission-preview pre { background:var(--ac-soft); color:var(--ac-ink); padding:16px; border-radius:10px; white-space:pre-wrap; overflow-wrap:anywhere; font-size:13px; }
+    #aicodet-mission-preview code { font-family:ui-monospace,Consolas,monospace; }
+    #aicodet-mission-preview .ac-example { font-size:12px; color:var(--ac-muted); }
+    #aicodet-mission-preview .ac-list { padding-left:22px; margin:12px 0; }
+    #aicodet-mission-preview .ac-row { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--ac-line); }
+    #aicodet-mission-preview .ac-footer { display:flex; flex-wrap:wrap; align-items:center; gap:12px; padding:18px 24px; background:var(--ac-panel); border-top:1px solid var(--ac-line); }
+    #aicodet-mission-preview .ac-footer span { flex:1; min-width:100px; }
+    #aicodet-mission-preview .ac-button { padding:10px 16px; border:1px solid var(--ac-line); border-radius:9px; background:var(--ac-panel); color:var(--ac-ink); }
+    #aicodet-mission-preview .ac-primary { background:var(--ac-accent); color:var(--ac-on); border-color:var(--ac-accent); }
+    #aicodet-mission-preview button:disabled { opacity:.55; cursor:default; }
+    #aicodet-mission-preview button:focus-visible { outline:3px solid var(--ac-accent); outline-offset:3px; }
+    @media(max-width:700px) { #aicodet-mission-preview .ac-layout { grid-template-columns:1fr; gap:16px; padding:8px 16px 20px; } #aicodet-mission-preview .ac-steps { padding:14px 16px; } #aicodet-mission-preview .ac-top { padding:18px 90px 18px 16px; } #aicodet-mission-preview aside { padding:16px; } #aicodet-mission-preview .ac-footer { padding:16px; } }
+    @media(pointer:coarse) { #aicodet-mission-preview button { min-height:44px; } #aicodet-mission-preview input,#aicodet-mission-preview textarea { font-size:16px; } }
+  </style>
+  <section class="ac-app">
+    <header class="ac-top"><span class="ac-brand">AICodeT</span><div><div class="ac-title">빈 할 일이 추가되는 이유</div><div class="ac-caption">검토용 화면 초안 · 입력과 결과는 예시</div></div></header>
+    <nav class="ac-steps" aria-label="살펴볼 미션 단계">
+      <button type="button" class="ac-step" data-step="0" aria-current="step">1 개념</button>
+      <button type="button" class="ac-step" data-step="1">2 문제 발견</button>
+      <button type="button" class="ac-step" data-step="2">3 요청 작성</button>
+      <button type="button" class="ac-step" data-step="3">4 코딩 기초</button>
+      <button type="button" class="ac-step" data-step="4">5 수정·검증</button>
+      <button type="button" class="ac-step" data-step="5">6 돌아보기</button>
+    </nav>
+    <div class="ac-layout">
+      <aside><div class="ac-kicker">이번에 배우는 AI 개발 원칙</div><h3 id="ac-principle">고치기 전에 기준부터</h3><p id="ac-principle-copy">AI에게 수정을 부탁하기 전에, 문제를 일으킨 동작과 기대하는 결과를 정리해요.</p><div class="ac-kicker">기억할 질문</div><p id="ac-question">무엇을 확인하면 고쳐졌다고 말할 수 있을까요?</p></aside>
+      <main class="ac-content" id="ac-current-screen" aria-label="현재 미션 화면"></main>
+    </div>
+    <footer class="ac-footer"><button type="button" class="ac-button" id="ac-prev">이전 화면</button><span class="ac-example" id="ac-position" aria-live="polite">화면 1 / 6</span><button type="button" class="ac-button ac-primary" id="ac-next">다음 화면</button></footer>
+  </section>
+  <template id="ac-screen-0">
+    <div class="ac-kicker">AI 개발 가이드 / 검증하기</div><h2>AI가 고쳤다고 하면,<br>끝일까요?</h2><p>같은 방법으로 문제를 다시 일으켜보고, 어떻게 달라져야 할지 정해보세요. 수정한 뒤에는 정상 입력과 예외 입력을 함께 확인해요.</p>
+    <div class="ac-box"><div class="ac-kicker">막연한 요청</div><p>“이 앱이 이상해. 고쳐줘.”</p><div class="ac-kicker">기준이 있는 요청</div><p>“입력하지 않고 추가를 누르면 빈 항목이 생겨. 빈 입력은 안내만 하고, 글자를 입력하면 지금처럼 추가되게 해줘.”</p></div>
+    <h3>수정 전에 먼저 확인할 것은?</h3><div class="ac-choice">문제를 일으킨 동작과 기대하는 결과</div><p class="ac-example">다음 활동: 할 일 앱에서 문제 직접 확인하기</p>
+  </template>
+  <template id="ac-screen-1">
+    <div class="ac-kicker">문제 관찰 / 예제 화면</div><h2>아무것도 쓰지 않고 추가했더니</h2><p>입력칸을 비운 채 추가하면 어떻게 되는지 살펴봐요.</p>
+    <div class="ac-box"><h3>오늘 할 일</h3><label class="ac-field"><span class="ac-label">새 할 일</span><input readonly placeholder="할 일을 입력하세요" aria-label="예제의 빈 할 일 입력칸"></label><button class="ac-button" type="button" disabled>추가 · 구현 예정</button><div class="ac-row">기획 정리하기</div><div class="ac-row"><span class="ac-example">빈 항목</span></div></div>
+    <p>예시 상황: 빈 항목이 한 개 추가됐어요.</p><div class="ac-choice">기대한 동작과 무엇이 달랐나요?</div><p class="ac-example">다음 활동: 원하는 동작을 문장으로 정리하기</p>
+  </template>
+  <template id="ac-screen-2">
+    <div class="ac-kicker">요구사항 / 작성 예시</div><h2>AI에게 무엇을 알려줄까요?</h2>
+    <label class="ac-field"><span class="ac-label">현재 동작</span><textarea readonly rows="2">입력하지 않고 추가를 누르면 빈 항목이 생겨요.</textarea></label>
+    <label class="ac-field"><span class="ac-label">원하는 동작</span><textarea readonly rows="2">빈 내용이나 스페이스만 입력하면 추가하지 말고, 할 일을 입력하라는 안내를 보여주세요.</textarea></label>
+    <label class="ac-field"><span class="ac-label">유지할 동작</span><textarea readonly rows="2">정상적인 할 일 추가와 기존 목록은 유지해주세요.</textarea></label>
+    <p class="ac-example">요청문 예시 · 실시간 AI 평가 없음</p>
+  </template>
+  <template id="ac-screen-3">
+    <div class="ac-kicker">코딩 기초 / 입력 검사</div><h2>조건을 확인하고, 필요하면 멈추기</h2><p>내용이 비어 있다면 추가하기 전에 멈추면 돼요.</p>
+    <div class="ac-box"><p><code>text</code> · 입력한 글자를 담은 값</p><p><code>trim()</code> · 앞뒤 공백을 제거한 새 문자열</p><p><code>if</code> · 조건이 맞으면 실행</p><p><code>return</code> · 현재 함수를 여기서 끝내기</p></div>
+    <h3>스페이스 세 개에서 공백을 제거하면?</h3><div class="ac-choice">빈 문자열이 남아요.</div><p class="ac-example">이해 확인 예시 · 실제 미션에서는 먼저 답을 선택해요.</p>
+  </template>
+  <template id="ac-screen-4">
+    <div class="ac-kicker">수정·검증 / 마지막 힌트 예시</div><h2>작게 바꾸고, 네 가지 입력 확인하기</h2><p class="ac-example">AI 응답 예시 · 미리 준비된 설명</p>
+    <pre><code>const text = input.value.trim();
+if (text === "") {
+  showMessage("할 일을 입력해주세요");
+  return;
+}
+addTask(text);</code></pre>
+    <div class="ac-row"><span>우유 사기</span><span>기대: 한 항목 추가</span></div><div class="ac-row"><span>빈 입력</span><span>기대: 안내만 표시</span></div><div class="ac-row"><span>스페이스 3개</span><span>기대: 안내만 표시</span></div><div class="ac-row"><span>앞뒤 공백 + 우유 사기</span><span>기대: 공백 제거 후 추가</span></div>
+    <p class="ac-example">실제 검사 전의 화면 예시 · 여기서는 코드를 실행하지 않아요.</p>
+  </template>
+  <template id="ac-screen-5">
+    <div class="ac-kicker">돌아보기 / 작성 예시</div><h2>다음에 오류를 만나면</h2><p>어떻게 문제를 확인했고, 어떤 기준으로 결과를 판단했는지 돌아봐요.</p>
+    <label class="ac-field"><span class="ac-label">AI에게 어떤 정보를 전달하겠어요?</span><textarea readonly rows="4">문제를 일으킨 순서와 실제 결과를 설명하고, 원하는 결과를 함께 적겠어요. 수정 후에는 빈 입력과 정상 입력을 모두 확인할 거예요.</textarea></label>
+    <div class="ac-box"><h3>완료할 활동</h3><ul class="ac-list"><li>빈 항목 문제 재현</li><li>요청문 작성과 조건 점검</li><li>공백 처리 예상 질문</li><li>현재 코드의 네 가지 동작 검사</li><li>회고 작성</li></ul></div><p class="ac-example">완료 기준의 예시이며, 실제 활동 기록은 아직 없어요.</p>
+  </template>
+  <script>
+    (() => {
+      const root = document.getElementById('aicodet-mission-preview');
+      const notes = [
+        ['고치기 전에 기준부터','AI에게 수정을 부탁하기 전에, 문제를 일으킨 동작과 기대하는 결과를 정리해요.','무엇을 확인하면 고쳐졌다고 말할 수 있을까요?'],
+        ['같은 문제 다시 만들기','문제가 생긴 순서를 알아야 AI에게 상황을 구체적으로 설명할 수 있어요.','어떤 입력에서 문제가 생겼나요?'],
+        ['현재·기대·유지할 동작','수정할 부분과 유지할 부분을 함께 설명하면 확인 기준이 분명해져요.','잘 되던 기능도 그대로 남아 있나요?'],
+        ['필요한 기초부터 이해하기','코드 전체를 외우기보다 이번 문제를 해결하는 조건의 의미를 알아봐요.','어떤 입력에서 추가를 멈춰야 할까요?'],
+        ['수정 뒤에도 직접 검증','AI의 설명만으로 완료를 판단하지 않고, 실제 입력 결과를 비교해요.','정상 입력과 예외 입력을 모두 확인했나요?'],
+        ['결과보다 판단 과정 남기기','문제를 발견하고, 설명하고, 검증한 방법을 다음 작업에 다시 사용해요.','다음에는 무엇을 먼저 확인하겠어요?']
+      ];
+      let step = 0;
+      const buttons = Array.from(root.querySelectorAll('[data-step]'));
+      const panel = root.querySelector('#ac-current-screen');
+      const prev = root.querySelector('#ac-prev');
+      const next = root.querySelector('#ac-next');
+      function render() {
+        const source = root.querySelector('#ac-screen-' + step);
+        panel.replaceChildren(source.content.cloneNode(true));
+        root.querySelector('#ac-principle').textContent = notes[step][0];
+        root.querySelector('#ac-principle-copy').textContent = notes[step][1];
+        root.querySelector('#ac-question').textContent = notes[step][2];
+        root.querySelector('#ac-position').textContent = '화면 ' + (step + 1) + ' / 6';
+        buttons.forEach((button, index) => { if (index === step) button.setAttribute('aria-current','step'); else button.removeAttribute('aria-current'); });
+        prev.disabled = step === 0;
+        next.disabled = step === 5;
+      }
+      function restore(snapshot) {
+        const saved = snapshot && snapshot.privateContent && snapshot.privateContent.step;
+        if (Number.isInteger(saved) && saved >= 0 && saved < notes.length) step = saved;
+      }
+      function move(value) {
+        step = Math.max(0, Math.min(5, value));
+        render();
+        if (window.openai && window.openai.setWidgetState) window.openai.setWidgetState({modelContent:{previewStage:notes[step][0]},privateContent:{step}}).catch(() => {});
+      }
+      buttons.forEach(button => button.addEventListener('click', () => move(Number(button.dataset.step))));
+      prev.addEventListener('click', () => move(step - 1));
+      next.addEventListener('click', () => move(step + 1));
+      restore(window.openai && window.openai.widgetState);
+      render();
+      window.addEventListener('openai:set_globals', event => { const snapshot = event.detail && event.detail.globals && event.detail.globals.widgetState; if (snapshot) { restore(snapshot); render(); } });
+    })();
+  </script>
+</div>
