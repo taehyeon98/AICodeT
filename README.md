@@ -36,6 +36,7 @@ npm run typecheck, npm run lint, npm test, npm run check:dependencies, npm run d
 - [설계 초안과 HTML 미리보기](docs/drafts/README.md): 디자인 참고 자료, 실제 앱과 구분
 - [Android 확인 기록](docs/ANDROID_VALIDATION.md): 실제 확인 범위와 새 기능의 기기 확인 순서
 - [남은 작업](docs/REMAINING_WORK.md): 우선순위와 완료 기준, 후속 확장 범위
+- [자동 검사 구성](docs/CI.md): PR 검사 항목·권한·보안 기준. GitHub 반영과 최초 실행은 아직입니다.
 - [작업 규칙](CONTRIBUTING.md) / [AI 작업 지침](AGENTS.md)
 
 ## 다음 구현과 포트폴리오 검증
