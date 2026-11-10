@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, PropsWithChildren, useContext, useEffect, useState, useSyncExternalStore } from 'react';
-import { Alert, Text, View } from 'react-native';
+import { Alert, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '../../components/ui';
 import { colors, styles } from '../../styles/theme';
@@ -17,14 +17,14 @@ export function LearningProvider({ children }: PropsWithChildren) {
   ]);
   return <LearningContext.Provider value={{ ...snapshot, dispatch: store.dispatch, retrySave: store.retrySave, reset: store.reset }}>
     {snapshot.phase !== 'ready' ? <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
-      <View style={styles.content}>
+      <ScrollView contentContainerStyle={styles.content}>
         <Text accessibilityRole="header" style={styles.heading}>{snapshot.phase === 'loading' ? '학습 기록을 불러오는 중이에요' : snapshot.phase === 'resetting' ? '학습 기록을 지우는 중이에요' : '기록을 확인해주세요'}</Text>
         {!!snapshot.notice && <Text style={styles.body}>{snapshot.notice}</Text>}
         {snapshot.phase === 'load-error' && <>
           <Button title="다시 불러오기" onPress={() => { void store.load(); }} />
           <Button title="기록 초기화" secondary onPress={reset} />
         </>}
-      </View>
+      </ScrollView>
     </SafeAreaView> : <View style={{ flex: 1 }}>
       {children}
       {snapshot.saveStatus === 'error' && <SafeAreaView edges={['bottom']} style={{ backgroundColor: colors.warm }}>
