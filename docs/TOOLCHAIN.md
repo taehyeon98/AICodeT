@@ -22,6 +22,7 @@
 | 앱 | expo-linking | 58.0.16 |
 | 앱 | expo-router | 58.0.30 |
 | 앱 | expo-status-bar | 58.0.4 |
+| 앱 | expo-system-ui | 58.0.7 |
 | 앱 | react | 19.3.0 |
 | 앱 | react-dom | 19.3.0 |
 | 앱 | react-native | 0.88.1 |
@@ -39,7 +40,7 @@
 | 개발·검사 | jest-expo | 58.0.14 |
 | 개발·검사 | typescript | 6.0.3 |
 
-직접 의존성 26개를 정확한 버전으로 고정했습니다. 간접 의존성은 잠금 파일로 관리하며 재설치 명령은 npm ci입니다. AsyncStorage 2.2.0으로 영구 진도 저장·복원·초기화를 연결했습니다. 이번 기능 추가에서 패키지·잠금 파일의 버전은 변경하지 않았습니다.
+직접 의존성 27개를 정확한 버전으로 고정했습니다. 간접 의존성은 잠금 파일로 관리하며 재설치 명령은 npm ci입니다. AsyncStorage 2.2.0으로 영구 진도 저장·복원·초기화를 연결했습니다. APK 준비에서 밝은 네이티브 화면 설정에 필요한 expo-system-ui 58.0.7을 Expo 호환 목록에 맞춰 추가하고 잠금 파일을 갱신했습니다. 기존 26개 직접 패키지 버전은 유지했습니다.
 
 ## SDK 58 전환
 
@@ -89,6 +90,6 @@ Ubuntu 24.04, Node 24.19.0, npm 11.17.0을 사용합니다. 공식 actions/check
 
 ## 실행·검증 명령
 
-개발 서버: npm start. 타입: npm run typecheck. 린트: npm run lint. 단위 테스트: npm test. SDK: npm run check:dependencies. 진단: npm run doctor. Android 번들: npm run export:android.
+개발 서버: npm start. 타입: npm run typecheck. 린트: npm run lint. 단위 테스트: npm test. SDK: npm run check:dependencies. 진단: npm run doctor. Android 번들: npm run export:android. Windows 내부 테스트 APK: npm run build:android:preview.
 
-Expo Go는 초기 기기 확인용입니다. Android Studio·JDK·전역 CLI를 설치하지 않았습니다. 원격 빌드·서명·스토어 제출·서버·실제 AI 모델은 이번 구현에 포함하지 않았습니다.
+Expo Go는 초기 기기 확인용입니다. 이후 APK 준비에서 이 PC에 설치된 Android Studio JBR OpenJDK 25.0.2와 Android SDK를 확인했습니다. Gradle wrapper 9.4.1, Build Tools 37.0.0, min SDK 24 / target SDK 36 / compile SDK 37, NDK 27.1.12297006, CMake 3.31.6·Ninja 1.12.1, Kotlin 플러그인 2.2.10으로 arm64 내부 테스트용 APK를 생성하고 서명·포함 내용을 확인했습니다. 실제 설치·오프라인 실행은 미확인입니다. 네이티브 프로젝트·빌드 출력·테스트 서명 파일은 Git에서 제외합니다. 원격 빌드·전용 배포 서명·스토어 제출·서버·실제 AI 모델은 아직 제공하지 않습니다. [APK 빌드 기록](ANDROID_APK.md)을 참고합니다.
